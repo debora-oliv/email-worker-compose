@@ -7,3 +7,10 @@ services:
     - dados:/var/lib/postgres/data
     - .scripts:/scripts
     - .scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+  frontend:
+    image: nginx:1.29.0-alpine
+    volumes:
+    - .web:/usr/share/nginx/html/
+    ports:
+    - 80:80
+
