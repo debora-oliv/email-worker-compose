@@ -1,5 +1,9 @@
-version: "3.8"
-
+volumes:
+  dados:
 services:
   db:
     image: postgres:17.5
+    volumes:
+    - dados:/var/lib/postgres/data
+    - .scripts:/scripts
+    - .scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
