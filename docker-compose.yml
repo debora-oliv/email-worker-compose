@@ -8,6 +8,8 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: psql123
+    networks:
+    - database
   frontend:
     image: nginx:1.13
     volumes:
@@ -17,6 +19,8 @@ services:
     - 80:80
     depends_on:
     - app
+    networks:
+    - web
   app:
     image: python:3.6
     volumes:
@@ -25,5 +29,11 @@ services:
     command: sh ./app.sh
     depends_on:
     - db
+    networks:
+    - database
+    - web
 volumes:
   dados:
+networks:
+  database:
+  web:
